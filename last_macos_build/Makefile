@@ -51,7 +51,7 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../src/main.cpp \
-		../src/mainwindow.cpp \
+		../src/GUI/mainwindow.cpp \
 		../src/BACKEND/file.cpp \
 		../src/BACKEND/basedisk.cpp \
 		../src/BACKEND/size.cpp \
@@ -200,6 +200,7 @@ DIST          = ../../../../Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/spec_post.prf \
+		../src/.qmake.stash \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/toolchain.prf \
@@ -227,7 +228,7 @@ DIST          = ../../../../Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/exceptions.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/yacc.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/lex.prf \
-		../src/RAID-SIMULATOR.pro ../src/mainwindow.h \
+		../src/RAID-SIMULATOR.pro ../src/GUI/mainwindow.h \
 		../src/BACKEND/file.h \
 		../src/BACKEND/basedisk.h \
 		../src/BACKEND/size.h \
@@ -235,7 +236,7 @@ DIST          = ../../../../Qt/5.10.0/clang_64/mkspecs/features/spec_pre.prf \
 		../src/BACKEND/RAID0/strike.h \
 		../src/BACKEND/bitmagic.h \
 		../src/BACKEND/metafun.h ../src/main.cpp \
-		../src/mainwindow.cpp \
+		../src/GUI/mainwindow.cpp \
 		../src/BACKEND/file.cpp \
 		../src/BACKEND/basedisk.cpp \
 		../src/BACKEND/size.cpp \
@@ -393,6 +394,7 @@ Makefile: ../src/RAID-SIMULATOR.pro ../../../../Qt/5.10.0/clang_64/mkspecs/macx-
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.10.0/clang_64/mkspecs/features/toolchain.prf \
@@ -560,6 +562,7 @@ Makefile: ../src/RAID-SIMULATOR.pro ../../../../Qt/5.10.0/clang_64/mkspecs/macx-
 ../../../../Qt/5.10.0/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.10.0/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt/5.10.0/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.10.0/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.10.0/clang_64/mkspecs/features/mac/sdk.prf:
 ../../../../Qt/5.10.0/clang_64/mkspecs/features/toolchain.prf:
@@ -621,9 +624,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.10.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/mainwindow.h ../src/BACKEND/file.h ../src/BACKEND/basedisk.h ../src/BACKEND/size.h ../src/BACKEND/RAID0/raid0_disk.h ../src/BACKEND/RAID0/strike.h ../src/BACKEND/bitmagic.h ../src/BACKEND/metafun.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/main.cpp ../src/mainwindow.cpp ../src/BACKEND/file.cpp ../src/BACKEND/basedisk.cpp ../src/BACKEND/size.cpp ../src/BACKEND/RAID0/raid0_disk.cpp ../src/BACKEND/RAID0/strike.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../src/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/GUI/mainwindow.h ../src/BACKEND/file.h ../src/BACKEND/basedisk.h ../src/BACKEND/size.h ../src/BACKEND/RAID0/raid0_disk.h ../src/BACKEND/RAID0/strike.h ../src/BACKEND/bitmagic.h ../src/BACKEND/metafun.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/main.cpp ../src/GUI/mainwindow.cpp ../src/BACKEND/file.cpp ../src/BACKEND/basedisk.cpp ../src/BACKEND/size.cpp ../src/BACKEND/RAID0/raid0_disk.cpp ../src/BACKEND/RAID0/strike.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../src/GUI/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -633,6 +636,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r RAID-SIMULATOR.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -659,10 +663,10 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../../../../Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../src/mainwindow.h \
+		../src/GUI/mainwindow.h \
 		moc_predefs.h \
 		../../../../Qt/5.10.0/clang_64/bin/moc
-	/Users/dezsobence/Qt/5.10.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/dezsobence/Qt/5.10.0/clang_64/mkspecs/macx-clang -I/Users/dezsobence/Dropbox/GITHUB_RAID-SIMULATOR/RAID-SIMULATOR/src -I/Users/dezsobence/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/dezsobence/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Users/dezsobence/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/dezsobence/Qt/5.10.0/clang_64/lib ../src/mainwindow.h -o moc_mainwindow.cpp
+	/Users/dezsobence/Qt/5.10.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/dezsobence/Qt/5.10.0/clang_64/mkspecs/macx-clang -I/Users/dezsobence/Dropbox/GITHUB_RAID-SIMULATOR/RAID-SIMULATOR/src -I/Users/dezsobence/Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/dezsobence/Qt/5.10.0/clang_64/lib/QtGui.framework/Headers -I/Users/dezsobence/Qt/5.10.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/dezsobence/Qt/5.10.0/clang_64/lib ../src/GUI/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -671,9 +675,9 @@ compiler_moc_source_clean:
 compiler_uic_make_all: ui_mainwindow.h
 compiler_uic_clean:
 	-$(DEL_FILE) ui_mainwindow.h
-ui_mainwindow.h: ../src/mainwindow.ui \
+ui_mainwindow.h: ../src/GUI/mainwindow.ui \
 		../../../../Qt/5.10.0/clang_64/bin/uic
-	/Users/dezsobence/Qt/5.10.0/clang_64/bin/uic ../src/mainwindow.ui -o ui_mainwindow.h
+	/Users/dezsobence/Qt/5.10.0/clang_64/bin/uic ../src/GUI/mainwindow.ui -o ui_mainwindow.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -687,7 +691,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-main.o: ../src/main.cpp ../src/mainwindow.h \
+main.o: ../src/main.cpp ../src/GUI/mainwindow.h \
 		../../../../Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../../../../Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -702,12 +706,12 @@ main.o: ../src/main.cpp ../src/mainwindow.h \
 		../src/BACKEND/bitmagic.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../src/main.cpp
 
-mainwindow.o: ../src/mainwindow.cpp ../src/mainwindow.h \
+mainwindow.o: ../src/GUI/mainwindow.cpp ../src/GUI/mainwindow.h \
 		../../../../Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.10.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		ui_mainwindow.h \
 		../src/BACKEND/metafun.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../src/mainwindow.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../src/GUI/mainwindow.cpp
 
 file.o: ../src/BACKEND/file.cpp ../src/BACKEND/file.h \
 		../../../../Qt/5.10.0/clang_64/lib/QtCore.framework/Headers/QString \

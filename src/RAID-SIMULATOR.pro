@@ -41,7 +41,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
+        GUI/mainwindow.cpp \
     BACKEND/file.cpp \
     BACKEND/basedisk.cpp \
     BACKEND/size.cpp \
@@ -49,7 +49,7 @@ SOURCES += \
     BACKEND/RAID0/strike.cpp
 
 HEADERS += \
-        mainwindow.h \
+        GUI/mainwindow.h \
     BACKEND/file.h \
     BACKEND/basedisk.h \
     BACKEND/size.h \
@@ -59,4 +59,4 @@ HEADERS += \
     BACKEND/metafun.h
 
 FORMS += \
-        mainwindow.ui
+        GUI/mainwindow.ui
