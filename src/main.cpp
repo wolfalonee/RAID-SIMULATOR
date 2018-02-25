@@ -11,9 +11,10 @@
 int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 {
 
-    //QApplication a(argc, argv);
-    //MainWindow w;
-    //w.show();
+    QApplication a(argc, argv);
+    MainWindow w;
+
+    w.show();
 
 
     return 0;
