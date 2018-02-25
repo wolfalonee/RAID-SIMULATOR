@@ -8,6 +8,14 @@
 #include <vector>
 
 
+class B{
+
+};
+
+class A : public B{
+
+};
+
 int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 {
     /*
@@ -15,7 +23,6 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
     MainWindow w;
     w.show();
     */
-
 
 
     return 0;

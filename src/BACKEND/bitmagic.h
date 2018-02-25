@@ -27,6 +27,19 @@ public:
         tmp ^= (-newvalue ^ tmp) & (1 << (index - targetByte*8));
     }
 
+    template<typename T>
+    static void setByte(const T& obj, int index, char newValue){
+        static_cast<char*>(&obj)[index] = newValue;
+    }
+
+    template<typename T>
+    static void write(const T& obj, char * target){
+        constexpr size_t size = sizeof(obj);
+        for(int i = 0; i < size; i++){
+            target[i] = (static_cast<char*>(&obj))[i];
+        }
+    }
+
     /*Kiiratás pl:
      * 7 = 1. byte:
      *     0 0 0 0 0 1 1 1
