@@ -12,6 +12,12 @@ public:
         return static_cast<char*>(tmp) + index;
     }
 
+    template<typename T,size_t SIZE_N>
+    static char* getByte(T (&obj)[SIZE_N], int index){
+        return static_cast<char*>(const_cast<char*>((&obj[0]))) + index;
+    }
+
+
     template<typename T>
     static bool getBit(const T& obj, int index){
         int targetByte = index / 8;
@@ -35,8 +41,8 @@ public:
     template<typename T>
     static void write(const T& obj, char * target){
         constexpr size_t size = sizeof(obj);
-        for(int i = 0; i < size; i++){
-            target[i] = (static_cast<char*>(&obj))[i];
+        for(size_t i = 0; i < size; i++){
+            target[i] = (reinterpret_cast<char*>(&const_cast<T&>(obj)))[i];
         }
     }
 
@@ -54,6 +60,20 @@ public:
             QDebug debuggernew(qDebug());
             for(int b = 7; b >= 0;b--){
                 debuggernew << qPrintable(getBit(*tmp,b) ? "1" :"0");
+            }
+        }
+    }
+
+    template<typename T>
+    static void printBits(const T& obj,int size){
+        qDebug() << "------------\n";
+        qDebug() << "[8] [7] [6] [5] [4] [3] [2] [1]";
+        for(int i = 0; i < size;i++){
+            qDebug() << "\n" << i+1 << ". byte: ";
+            char * tmp = getByte(obj,i);
+            QDebug debuggernew(qDebug());
+            for(int b = 7; b >= 0;b--){
+                debuggernew << qPrintable(getBit(*tmp,b) ? "[1]" :"[0]");
             }
         }
     }
