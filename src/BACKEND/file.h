@@ -14,13 +14,13 @@ public:
     };
     File();
 
-    void setName(const QString& name);
-    QString getName() const;
-    void setExtension(const QString& ext);
-    QString getExtension() const;
-    QString getFullName() const; //name + . + extension
+    File& setName(const std::string& name);
+    std::string getName() const;
+    void setExtension(const std::string& ext);
+    std::string getExtension() const;
+    std::string getFullName() const; //name + . + extension
 
-    void setSize(int newSize);
+    File& setSize(int newSize);
     int getSize() const; //byte
 
     /*Váltószám = shiftNumber*/
@@ -33,8 +33,8 @@ public:
 
 private:
     int m_size; //Bájtban értendő
-    QString m_name;
-    QString m_extension;
+    std::string m_name;
+    std::string m_extension;
 
 };
 

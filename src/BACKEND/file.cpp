@@ -6,29 +6,31 @@ File::File(){
     this->m_extension = "";
 }
 
-void File::setName(const QString &name){
+File& File::setName(const std::string &name){
     this->m_name = name;
+    return *this;
 }
 
-QString File::getName() const{
+std::string File::getName() const{
     return this->m_name;
 }
 
-QString File::getExtension() const{
+std::string File::getExtension() const{
     return this->m_extension;
 }
 
-void File::setExtension(const QString& ext){
+void File::setExtension(const std::string& ext){
     this->m_extension = ext;
 }
 
-QString File::getFullName() const{
+std::string File::getFullName() const{
     return this->m_extension == "" ? this->m_name :
            this->m_name + "." + this->m_extension;
 }
 
-void File::setSize(int newSize){
+File& File::setSize(int newSize){
     this->m_size = newSize;
+    return *this;
 }
 
 int File::getSize() const{

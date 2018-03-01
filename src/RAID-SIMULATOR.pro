@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++17
+CONFIG += c++14 c++17
 CONFIG += std=c++14 std=c++11 std=c++17 std=c++1z
 
 QMAKE_CXXFLAGS += -Wno-c++17-extensions
@@ -46,7 +46,10 @@ SOURCES += \
     BACKEND/basedisk.cpp \
     BACKEND/size.cpp \
     BACKEND/RAID0/raid0_disk.cpp \
-    BACKEND/RAID0/strike.cpp
+    BACKEND/RAID0/strike.cpp \
+    BACKEND/filesystem.cpp \
+    BACKEND/folder.cpp \
+    BACKEND/catalog.cpp
 
 HEADERS += \
         GUI/mainwindow.h \
@@ -56,7 +59,10 @@ HEADERS += \
     BACKEND/RAID0/raid0_disk.h \
     BACKEND/RAID0/strike.h \
     BACKEND/bitmagic.h \
-    BACKEND/metafun.h
+    BACKEND/metafun.h \
+    BACKEND/filesystem.h \
+    BACKEND/folder.h \
+    BACKEND/catalog.h
 
 FORMS += \
         GUI/mainwindow.ui
