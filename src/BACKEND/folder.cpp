@@ -93,3 +93,19 @@ size_t Folder::getDirCount() const{
 size_t Folder::getFileCount() const{
     return files.size();
 }
+
+void Folder::dump(json * output){
+    int k;
+    json & ref = *output;
+    ref["name"] = this->name;
+    ref["dircount"] = getDirCount();
+    ref["filecount"] = getFileCount();
+    k=0;
+    for(auto& i: files){
+        ref[std::string("file")+std::to_string(k++)] = i.second.dump();
+    }
+    k=0;
+    for(auto& i: folders){
+        i.second->dump(&ref[std::string("folder")+std::to_string(k++)]);
+    }
+}

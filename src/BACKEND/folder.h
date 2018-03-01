@@ -6,6 +6,11 @@
 #include <exception>
 #include <list>
 #include <iostream>
+#include "json.h"
+#include "metafun.h"
+
+using namespace nlohmann;
+
 
 /*Root directory parent = nullptr*/
 class Folder
@@ -52,6 +57,10 @@ public:
     size_t getDirCount() const;
     size_t getFileCount() const;
 
+    /*json dump a kapott json objectbe*/
+    void dump(json * output);
+    void loadFromJson(json& input);
+
 
 private:
     std::map<std::string,Folder*> folders; //key = name
@@ -59,6 +68,11 @@ private:
     Folder* parent;
     std::string name;
 
+    /*Mindenképp szükséges függvények*/
+    static void _self_test(){
+        static_assert(metafun::hasFunction_dump<Folder>::value,"JSON Dump functiom need");
+        static_assert(metafun::hasFunction_loadFromJson<Folder>::value,"loadFromJson function need");
+    }
 };
 
 #endif // FOLDER_H

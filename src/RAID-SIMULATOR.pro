@@ -62,7 +62,8 @@ HEADERS += \
     BACKEND/metafun.h \
     BACKEND/filesystem.h \
     BACKEND/folder.h \
-    BACKEND/catalog.h
+    BACKEND/catalog.h \
+    BACKEND/json.h
 
 FORMS += \
         GUI/mainwindow.ui

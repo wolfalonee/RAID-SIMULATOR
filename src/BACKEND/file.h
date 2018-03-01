@@ -2,6 +2,16 @@
 #define FILE_H
 #include <QString>
 #include "size.h"
+#include "json.h"
+#include "metafun.h"
+
+
+namespace metafun{
+    GENERATE_ALL_CHECKS(dump);
+    GENERATE_ALL_CHECKS(loadFromJson);
+}
+
+using namespace nlohmann;
 
 class File
 {
@@ -31,11 +41,16 @@ public:
     /*Visszadja, hogy miben lenne a legideálisabb kiiratni a méretét*/
     sizeTypeHint bestSizeType() const;
 
+    json dump();
+    static File loadFromJson(const json&);
+
 private:
     int m_size; //Bájtban értendő
     std::string m_name;
     std::string m_extension;
-
+    void _self_test(){
+        static_assert(metafun::hasFunction_dump<File>::value,"JSON Dump functiom need");
+    }
 };
 
 #endif // FILE_H

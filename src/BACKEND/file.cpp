@@ -64,3 +64,19 @@ auto File::bestSizeType() const -> sizeTypeHint {
 
     return sizeTypeHint::GB;
 }
+
+json File::dump(){
+    json ret;
+    ret["name"] = getName();
+    ret["extension"] = getExtension();
+    ret["size"] = getSize();
+    return ret;
+}
+
+File File::loadFromJson(const json& ref){
+    File newfile;
+    newfile.setExtension(ref["extension"]);
+    newfile.setName(ref["name"]);
+    newfile.setSize(ref["size"]);
+    return newfile;
+}

@@ -1,6 +1,5 @@
 #ifndef METAFUN_TPP
 #define METAFUN_TPP
-
 #include <iostream>
 
 namespace metafun{
@@ -109,3 +108,4 @@ struct hasMember_##memberName{\
 
 #endif // metafun
 
+/*DB - '18*/
