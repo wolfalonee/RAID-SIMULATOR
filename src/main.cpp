@@ -4,12 +4,7 @@
 #include <stdlib.h>
 #include <QDebug>
 
-#include "BACKEND/folder.h"
-#include "BACKEND/catalog.h"
-#include "BACKEND/filesystem.h"
-#include "BACKEND/allocator.h"
-#include "BACKEND/basedisk.h"
-#include "BACKEND/size.h"
+#include "BACKEND/simpleFS/simplefilesystem.h"
 
 int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 {

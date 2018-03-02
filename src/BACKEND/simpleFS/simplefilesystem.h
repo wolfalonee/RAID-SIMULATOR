@@ -1,11 +1,13 @@
-#ifndef FILESYSTEM_H
-#define FILESYSTEM_H
-#include "catalog.h"
+#ifndef SIMPLEFILESYSTEM_H
+#define SIMPLEFILESYSTEM_H
+#include "../catalog.h"
 #include "allocator.h"
 
 /* A FileSystem létrehozásához meg kell adni egy allokátor tipust
  * Fontos, hogy csak olyan tipust lehet megadni, aminek az
  * egyik őse az Allocator osztály*/
+
+namespace simpleFS{
 
 template<typename T>
 struct derivedFromAllocator{
@@ -27,7 +29,7 @@ public:
 private:
     Catalog m_catalog;
 };
+}
 
 
-
-#endif // FILESYSTEM_H
+#endif // SIMPLEFILESYSTEM_H

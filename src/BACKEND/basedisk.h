@@ -24,8 +24,9 @@ public:
     void setReadingSpeed(int);
     void setWritingSpeed(int);
 
-    /*out of range: Undef*/
     unsigned long getSectorCount() const;
+
+    /*out of range: Undef*/
     char* getSector(int index) const;
     void writeSector(char * buffer, int index);
 

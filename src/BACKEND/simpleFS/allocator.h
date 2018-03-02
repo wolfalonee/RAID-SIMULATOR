@@ -3,7 +3,8 @@
 /*Abstract osztály*/
 
 class Allocator{
-
+public:
+    char * data;
 };
 
 

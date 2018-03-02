@@ -45,9 +45,9 @@ SOURCES += \
     BACKEND/file.cpp \
     BACKEND/basedisk.cpp \
     BACKEND/size.cpp \
-    BACKEND/filesystem.cpp \
     BACKEND/folder.cpp \
-    BACKEND/catalog.cpp
+    BACKEND/catalog.cpp \
+    BACKEND/simpleFS/simplefilesystem.cpp
 
 HEADERS += \
         GUI/mainwindow.h \
@@ -56,11 +56,11 @@ HEADERS += \
     BACKEND/size.h \
     BACKEND/bitmagic.h \
     BACKEND/metafun.h \
-    BACKEND/filesystem.h \
     BACKEND/folder.h \
     BACKEND/catalog.h \
     BACKEND/json.h \
-    BACKEND/allocator.h
+    BACKEND/simpleFS/allocator.h \
+    BACKEND/simpleFS/simplefilesystem.h
 
 FORMS += \
         GUI/mainwindow.ui
