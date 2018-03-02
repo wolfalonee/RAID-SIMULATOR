@@ -9,12 +9,12 @@ public:
     template<typename T>
     static char* getByte(const T& obj, int index){
         T * tmp = &(const_cast<T&>(obj));
-        return static_cast<char*>(tmp) + index;
+        return reinterpret_cast<char*>(tmp) + index;
     }
 
     template<typename T,size_t SIZE_N>
     static char* getByte(T (&obj)[SIZE_N], int index){
-        return static_cast<char*>(const_cast<char*>((&obj[0]))) + index;
+        return reinterpret_cast<char*>(const_cast<char*>((&obj[0]))) + index;
     }
 
 

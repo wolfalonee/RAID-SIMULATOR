@@ -45,8 +45,6 @@ SOURCES += \
     BACKEND/file.cpp \
     BACKEND/basedisk.cpp \
     BACKEND/size.cpp \
-    BACKEND/RAID0/raid0_disk.cpp \
-    BACKEND/RAID0/strike.cpp \
     BACKEND/filesystem.cpp \
     BACKEND/folder.cpp \
     BACKEND/catalog.cpp
@@ -56,14 +54,13 @@ HEADERS += \
     BACKEND/file.h \
     BACKEND/basedisk.h \
     BACKEND/size.h \
-    BACKEND/RAID0/raid0_disk.h \
-    BACKEND/RAID0/strike.h \
     BACKEND/bitmagic.h \
     BACKEND/metafun.h \
     BACKEND/filesystem.h \
     BACKEND/folder.h \
     BACKEND/catalog.h \
-    BACKEND/json.h
+    BACKEND/json.h \
+    BACKEND/allocator.h
 
 FORMS += \
         GUI/mainwindow.ui

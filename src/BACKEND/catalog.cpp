@@ -13,7 +13,7 @@ void Catalog::saveCatalog(){
 void Catalog::loadCatalog(){
     json data;
     CatalogParser::loadJSON(&data,this->_catalogName);
-    CatalogParser::loadrootdir(rootDirectory,data);
+    CatalogParser::loadFromRootDir(rootDirectory,data);
 }
 
 Folder& Catalog::getRootDir(){
@@ -47,21 +47,23 @@ void CatalogParser::loadJSON(json * output,const std::string& filename){
     }
     fseek(inpfile,0,SEEK_SET);
 
-    size_t read=fread(buffer,filesize,1,inpfile);
+    size_t read=fread(buffer,static_cast<size_t>(filesize),1,inpfile);
     buffer[filesize] ='\0';
 
     if(read!=1){
         printf("Catalog parser read error!");
     }
 
-    free(buffer);
-    fclose(inpfile);
 
     std::string str(buffer);
     *output = json::parse(str);
+
+    free(buffer);
+    fclose(inpfile);
 }
 
-void CatalogParser::loadrootdir(Folder& dir, json& data){
+
+void CatalogParser::loadFromRootDir(Folder& dir, json& data){
     int filecount = data["filecount"];
     int dircount = data["dircount"];
     std::string name;
@@ -71,20 +73,6 @@ void CatalogParser::loadrootdir(Folder& dir, json& data){
     }
     for(int k = 0; k < dircount;k++){
         dir.addFolder(data["folder"+std::to_string(k)]["name"]);
-        loadDir(dir.getFolder(data["folder"+std::to_string(k)]["name"]),data["folder"+std::to_string(k)]);
-    }
-}
-
-void CatalogParser::loadDir(Folder& dir, json& data){
-    int filecount = data["filecount"];
-    int dircount = data["dircount"];
-    std::string name;
-    for(int i = 0; i < filecount;i++){
-        name = "file"+std::to_string(i);
-        dir.addFile(File::loadFromJson(data[name]));
-    }
-    for(int k = 0; k < dircount;k++){
-        dir.addFolder(data["folder"+std::to_string(k)]["name"]);
-        loadDir(dir.getFolder(data["folder"+std::to_string(k)]["name"]),data["folder"+std::to_string(k)]);
+        loadFromRootDir(dir.getFolder(data["folder"+std::to_string(k)]["name"]),data["folder"+std::to_string(k)]);
     }
 }

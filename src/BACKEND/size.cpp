@@ -2,20 +2,20 @@
 
 Size::Size(){}
 
-int Size::ByteToKb(int byte){
-    int res = byte / shiftNumber;
+unsigned long Size::ByteToKb(unsigned long byte){
+    unsigned long res = byte / shiftNumber;
     return res==0 ? 1 : res;
 }
 
-int Size::ByteToMb(int byte){
+unsigned long Size::ByteToMb(unsigned long byte){
     return byte / shiftNumber / shiftNumber;
 }
 
-int Size::ByteToGb(int byte){
+unsigned long Size::ByteToGb(unsigned long byte){
     return ByteToMb(byte) / shiftNumber;
 }
 
-int Size::KbToByte(int byte){
+unsigned long Size::KbToByte(unsigned long byte){
     return byte * shiftNumber;
 }
 

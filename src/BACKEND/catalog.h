@@ -42,8 +42,7 @@ public:
     CatalogParser(){;}
     static void save(Folder& rootdir,const std::string& outputname);
     static void loadJSON(json * ,const std::string& filename);
-    static void loadDir(Folder&,json&);
-    static void loadrootdir(Folder&,json&);
+    static void loadFromRootDir(Folder&,json&);
 };
 
 #endif // CATALOG_H

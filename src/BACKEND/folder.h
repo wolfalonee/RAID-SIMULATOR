@@ -63,10 +63,10 @@ public:
 
 
 private:
-    std::map<std::string,Folder*> folders; //key = name
-    std::map<std::string,File> files;
-    Folder* parent;
-    std::string name;
+    std::map<std::string,Folder*> m_folders; //key = name
+    std::map<std::string,File> m_files;
+    Folder* m_parent;
+    std::string m_name;
 
     /*Mindenképp szükséges függvények*/
     static void _self_test(){
