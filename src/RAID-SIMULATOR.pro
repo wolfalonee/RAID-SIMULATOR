@@ -44,10 +44,10 @@ SOURCES += \
         GUI/mainwindow.cpp \
     BACKEND/file.cpp \
     BACKEND/basedisk.cpp \
-    BACKEND/size.cpp \
     BACKEND/folder.cpp \
     BACKEND/catalog.cpp \
-    BACKEND/simpleFS/simplefilesystem.cpp
+    BACKEND/simpleFS/simplefilesystem.cpp \
+    BACKEND/simpleFS/linkedlistallocator.cpp
 
 HEADERS += \
         GUI/mainwindow.h \
@@ -60,7 +60,8 @@ HEADERS += \
     BACKEND/catalog.h \
     BACKEND/json.h \
     BACKEND/simpleFS/allocator.h \
-    BACKEND/simpleFS/simplefilesystem.h
+    BACKEND/simpleFS/simplefilesystem.h \
+    BACKEND/simpleFS/linkedlistallocator.h
 
 FORMS += \
         GUI/mainwindow.ui

@@ -13,6 +13,7 @@ namespace metafun{
 
 using namespace nlohmann;
 
+
 class File
 {
 public:
@@ -30,22 +31,24 @@ public:
     std::string getExtension() const;
     std::string getFullName() const; //name + . + extension
 
-    File& setSize(int newSize);
-    int getSize() const; //byte
+    File& setSize(unsigned long newSize);
+    unsigned long getSize() const; //byte
 
     /*Váltószám = shiftNumber*/
-    int sizeInMb() const;
-    int sizeInKb() const;
-    int sizeInGb() const;
+    unsigned long sizeInMb() const;
+    unsigned long sizeInKb() const;
+    unsigned long sizeInGb() const;
 
     /*Visszadja, hogy miben lenne a legideálisabb kiiratni a méretét*/
     sizeTypeHint bestSizeType() const;
+    std::string getSizeTypeAsString() const;
+
 
     json dump();
     static File loadFromJson(const json&);
 
 private:
-    int m_size; //Bájtban értendő
+    unsigned long m_size; //Bájtban értendő
     std::string m_name;
     std::string m_extension;
     void _self_test(){

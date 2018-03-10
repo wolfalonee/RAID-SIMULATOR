@@ -77,7 +77,7 @@ void BaseDisk::writeSector(char * buffer,int index){
     }
 }
 
-char* BaseDisk::getSector(int index) const{
+char* BaseDisk::getSector(unsigned long index) const{
     return this->data[index];
 }
 

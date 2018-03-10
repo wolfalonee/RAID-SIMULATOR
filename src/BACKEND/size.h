@@ -7,14 +7,22 @@
 class Size
 {
 public:
-    Size();
+    static constexpr unsigned long ByteToKb(unsigned long byte){
+        unsigned long res = byte / shiftNumber;
+        return res==0 ? 1 : res;
+    }
 
-    static unsigned long ByteToMb(unsigned long byte);
-    static unsigned long ByteToKb(unsigned long byte);
-    static unsigned long ByteToGb(unsigned long byte);
+    static constexpr unsigned long ByteToMb(unsigned long byte){
+        return byte / shiftNumber / shiftNumber;
+    }
 
-    static unsigned long KbToByte(unsigned long byte);
+    static constexpr unsigned long ByteToGb(unsigned long byte){
+        return ByteToMb(byte) / shiftNumber;
+    }
 
+    static constexpr unsigned long KbToByte(unsigned long byte){
+        return byte * shiftNumber;
+    }
 };
 
 #endif // SIZE_H

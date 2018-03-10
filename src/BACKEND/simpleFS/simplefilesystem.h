@@ -2,13 +2,10 @@
 #define SIMPLEFILESYSTEM_H
 #include "../catalog.h"
 #include "allocator.h"
-
-/* A FileSystem létrehozásához meg kell adni egy allokátor tipust
- * Fontos, hogy csak olyan tipust lehet megadni, aminek az
- * egyik őse az Allocator osztály*/
+/* Nem lehet disket mountolni mappába
+ * egy disknek külön labelen kell lennie */
 
 namespace simpleFS{
-
 template<typename T>
 struct derivedFromAllocator{
     static std::true_type magic(const Allocator* alloc);
@@ -16,11 +13,11 @@ struct derivedFromAllocator{
     static constexpr const bool value = decltype(magic(std::declval<T*>()))::value;
 };
 
-template<typename AllocatorType>
+template<typename FSAlloc>
 class FileSystem
 {
-static_assert(derivedFromAllocator<AllocatorType>::value,
-             "typename AllocatorType should be derived from public Allocator abstract class");
+static_assert(derivedFromAllocator<FSAlloc>::value,
+             "typename FSAlloc should be derived from public Allocator abstract class");
 public:
     FileSystem(){
 
@@ -28,8 +25,9 @@ public:
 
 private:
     Catalog m_catalog;
+    FSAlloc fileAllocator;
 };
-}
+} //simpleFS
 
 
 #endif // SIMPLEFILESYSTEM_H

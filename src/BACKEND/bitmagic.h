@@ -77,6 +77,29 @@ public:
             }
         }
     }
+
+
+    template<typename T>
+    static void copyBytes(char * from,T& to, unsigned long size){
+        char *tmp = reinterpret_cast<char*>(&to);
+        for(unsigned long i = 0; i < size;i++){
+            tmp[i] = from[i];
+        }
+    }
+
+    template<typename T>
+    static void copyBytes(T& from, char * to, unsigned long size){
+        char *tmp = reinterpret_cast<char*>(&from);
+        for(unsigned long i = 0; i < size;i++){
+            to[i] = tmp[i];
+        }
+    }
+
+    static void copyBytes(char * from, char * to, unsigned long size){
+        for(unsigned long i = 0; i< size;i++){
+            to[i] = from[i];
+        }
+    }
 };
 
 #endif

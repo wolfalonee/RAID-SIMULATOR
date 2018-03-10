@@ -28,24 +28,24 @@ std::string File::getFullName() const{
            this->m_name + "." + this->m_extension;
 }
 
-File& File::setSize(int newSize){
+File& File::setSize(unsigned long newSize){
     this->m_size = newSize;
     return *this;
 }
 
-int File::getSize() const{
+unsigned long File::getSize() const{
     return this->m_size;
 }
 
-int File::sizeInMb() const{
+unsigned long File::sizeInMb() const{
     return Size::ByteToMb(this->m_size);
 }
 
-int File::sizeInKb() const{
+unsigned long File::sizeInKb() const{
     return Size::ByteToKb(this->m_size);
 }
 
-int File::sizeInGb() const{
+unsigned long File::sizeInGb() const{
     return Size::ByteToGb(this->m_size);
 }
 
@@ -64,6 +64,20 @@ auto File::bestSizeType() const -> sizeTypeHint {
 
     return sizeTypeHint::GB;
 }
+
+auto File::getSizeTypeAsString() const -> std::string{
+    switch(bestSizeType()){
+        case sizeTypeHint::MB:
+            return "Mb";
+        case sizeTypeHint::GB :
+            return "Gb";
+        case sizeTypeHint::KB:
+            return "Kb";
+        case sizeTypeHint::BYTE:
+            return "Byte";
+    }
+}
+
 
 json File::dump(){
     json ret;

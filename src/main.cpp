@@ -6,6 +6,7 @@
 
 #include "BACKEND/simpleFS/simplefilesystem.h"
 
+
 int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 {
     /*
@@ -13,6 +14,13 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
     MainWindow w;
     w.show();
     */
+
+    Folder asd{nullptr,"root"};
+
+    for(auto& i : asd){
+        std::cout << i.getFullName();
+    }
+
 
     return 0;
    // return a.exec();

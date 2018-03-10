@@ -13,10 +13,39 @@ using namespace nlohmann;
 
 
 /*Root directory parent = nullptr*/
+
 class Folder
 {
 struct file_not_found : std::exception {};
 public:
+    class iterator{ //Fájlokon
+    public:
+        iterator(const iterator& it): obj(it.obj){}
+        iterator(std::map<std::string,File>::iterator r):obj(r){}
+        iterator& operator++(){
+            obj++;
+            return *this;
+        }
+
+        iterator operator++(int){
+            iterator back = *this;
+            obj++;
+            return back;
+        }
+
+        bool operator!=(const iterator it){
+            return obj != it.obj;
+        }
+
+        File& operator*(){
+            return obj->second;
+        }
+
+    private:
+        std::map<std::string,File>::iterator obj;
+    };
+
+
     Folder(Folder* parent,const std::string& name);
 
     ~Folder(); //Rekúrzív törlés, felszabadul az összes fájl és mappa.
@@ -61,6 +90,12 @@ public:
     void dump(json * output);
     void loadFromJson(json& input);
 
+    iterator begin(){
+        return iterator(m_files.begin());
+    }
+    iterator end(){
+        return iterator(m_files.end());
+    }
 
 private:
     std::map<std::string,Folder*> m_folders; //key = name
