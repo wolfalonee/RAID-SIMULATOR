@@ -32,7 +32,7 @@ public:
     /*Lementi a disk tartalmát a megadott fájlnévbe.*/
     void saveData(const std::string& filename);
 
-    /*Védelem ha egy szál épp akkor olvas amikor a másik változtatni akar a disk sebességén*/
+    /*Védelem, ha egy szál épp akkor olvas amikor a másik változtatni akar a disk sebességén*/
     /*Nem történik sokszor változtatás, ezért ennyi költség belefér.*/
     mutable std::recursive_mutex mut;
 private:

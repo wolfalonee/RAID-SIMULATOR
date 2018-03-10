@@ -32,17 +32,18 @@ class LinkedListAllocator : Allocator
 {
 public:
     ~LinkedListAllocator(){;}
-    virtual std::string addFile(char* buffer, const unsigned long size,BaseDisk& disk) noexcept(false) = 0;
-    virtual std::string appendToFile(const File& file,char * buffer,const unsigned long size,BaseDisk& disk) noexcept(false) = 0;
+    virtual std::string addFile(char* buffer, const unsigned long size,BaseDisk& disk) noexcept(false);
+    virtual std::string appendToFile(const File& file,char * buffer,const unsigned long size,BaseDisk& disk) noexcept(false){
+
+    }
 
 
+    unsigned long countOfFreeBlock(BaseDisk& disk);
+
+private:
     unsigned long readNextFreeBlock(char * sector);
     unsigned long getFreeSectorIndex(BaseDisk& disk);
     void setFreeSectorIndex(BaseDisk& disk, unsigned long newIndex);
-
-
-
-private:
 
 
 

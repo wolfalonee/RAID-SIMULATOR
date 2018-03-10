@@ -13,7 +13,6 @@ public:
     /*Egy fájlhoz hozzáfűzi a megadott buffert*/
     virtual std::string appendToFile(const File& file,char * buffer,const unsigned long size,BaseDisk& disk) noexcept(false) = 0;
 
-    virtual ~Allocator();
 
 private:
 
@@ -21,6 +20,7 @@ private:
 
 };
 }
+
 
 
 #endif // ALLOCATOR_H
